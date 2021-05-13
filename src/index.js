@@ -135,8 +135,8 @@ function start() {
     getCanvas2dContext('#canvas').clearRect(0, 0, 300, 300);
     let qq = crossChecker(drowRandomSquare('red', '#canvas'),drowRandomSquare('blue', '#canvas'), '#canvas');
     let qqq = drawElips(qq);
-    let gox = document.querySelectorAll(`#gox`);
-    let goy = document.querySelectorAll(`#goy`);
+    let gox = document.querySelectorAll(`.gox`);
+    let goy = document.querySelectorAll(`.goy`);
     let i = 0;
     while (i !== 10) {
         drawDots(qqq);

@@ -4,7 +4,6 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const TerserWebpackPlugin = require('terser-webpack-plugin')
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
@@ -23,7 +22,7 @@ module.exports = {
           new UglifyJsPlugin({
             cache: true,
             parallel: true,
-            sourceMap: true // set to true if you want JS source maps
+            sourceMap: true
           }),
           new OptimizeCssAssetWebpackPlugin({})
         ]
