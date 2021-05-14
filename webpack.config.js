@@ -4,10 +4,11 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
-    entry: './index.js',
+    entry: ['@babel/polyfill' ,'./index.js'],
     output: {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist')
@@ -39,21 +40,23 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader']
-            },
-            {
                 test: /\.(png|jpg|svg|gif)$/,
                 use: ['file-loader']
             },
             {
-                test: /\.less$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
-            },
-            {
                 test: /\.s[ac]ss$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-            }
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                  loader: "babel-loader",
+                  options: {
+                    presets: ['@babel/preset-env']
+                  }
+                }
+              }
         ]
     }
 }
