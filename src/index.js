@@ -91,18 +91,17 @@ function start() {
     drawRect('red', firstRect);
     drawRect('blue', secondRect);
     const crossRect = crossChecker(firstRect, secondRect);
-    const newEllipse = getEllipse(crossRect);
-    drawEllipse('green', newEllipse);
-    const quantityDots = (n) => {
+    if (crossRect) {
+        const newEllipse = getEllipse(crossRect);
+        drawEllipse('green', newEllipse);
         let i = 0;
-        while (i < n) {
-            const dotCoordinate = getDot(newEllipse)
+        while (i < 10) {
+            const dotCoordinate = getDot(newEllipse);
             drawDot('darkred', dotCoordinate);
             createTable(dotCoordinate);
             i++;
-        }
-    }
-    quantityDots(10);
+        };
+    };
 };
 
 BTN.addEventListener('click', start);

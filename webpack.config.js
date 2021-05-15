@@ -1,8 +1,8 @@
-const path = require('path')
-const HTMLWebpackPlugim = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const path = require('path');
+const HTMLWebpackPlugim = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
@@ -14,9 +14,12 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {
+        contentBase: path.resolve(__dirname, 'dist'),
         port: 4200,
         overlay: true,
-        open: true
+        open: true,
+        inline: true,
+        hot: true,
     },
     optimization: {
         minimizer: [
