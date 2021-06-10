@@ -8,7 +8,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
-    entry: ['@babel/polyfill' ,'./index.js'],
+    entry: ['@babel/polyfill' ,'./script/index.js'],
     output: {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist')
