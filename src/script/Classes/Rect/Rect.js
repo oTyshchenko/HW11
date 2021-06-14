@@ -11,11 +11,6 @@ class Rect extends Figure {
         this.height = Math.max(dot1.y, dot2.y) - Math.min(dot1.y, dot2.y);
     }
 
-    drawRect(ctx) {
-        ctx.strokeStyle = this.color;
-        ctx.strokeRect(this.beginX, this.beginY, this.width, this.height);
-    }
-
     crossRect(rect) {
         const a = this.beginX + this.width;
         const b = rect.beginX + rect.width;

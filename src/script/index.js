@@ -2,6 +2,7 @@ import { Rect } from './Classes/Rect/Rect';
 import { EllipseInRect } from './Classes/EllipseInRect/EllipseInRect';
 import { Dot } from './Classes/Dot/Dot';
 import { Table } from './Classes/Table';
+import { Draw } from './Classes/Draw';
 
 import './../style/style.scss';
 
@@ -18,16 +19,16 @@ const start = () => {
     CTX.clearRect(0, 0, WIDTH, HEIGHT);
     const blueRect = new Rect(Dot.randomDot(WIDTH, HEIGHT),Dot.randomDot(WIDTH, HEIGHT), 'blue');
     const redRect = new Rect(Dot.randomDot(WIDTH, HEIGHT),Dot.randomDot(WIDTH, HEIGHT), 'red');
-    blueRect.drawRect(CTX);
-    redRect.drawRect(CTX);
+    Draw.drawRect(CTX, blueRect);
+    Draw.drawRect(CTX, redRect);
     const crossRect = blueRect.crossRect(redRect);
     if (crossRect) {
         const newEllipse = new EllipseInRect(crossRect, 'black');
-        newEllipse.drawEllipse(CTX);
+        Draw.drawEllipse(CTX, newEllipse);
         let i = 0;
         while (i < numberOfDot) {
             const dotCoordinate = new Dot(Dot.getRandomDotInEllipse(newEllipse), 'darkred');
-            dotCoordinate.drawDot(CTX);
+            Draw.drawDot(CTX, dotCoordinate);
             Table.createTable(dotCoordinate, tbody, 'td')
             i++;
         };

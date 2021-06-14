@@ -8,15 +8,6 @@ class Dot extends Figure {
         this.y = obj.y;
     }
 
-    drawDot(ctx) {
-        ctx.beginPath();
-        ctx.strokeStyle = this.color;
-        ctx.arc(this.x, this.y, 1, 0, (Math.PI / 180) * 360);
-        ctx.fill();
-        ctx.stroke();
-        ctx.closePath();
-    }
-
     static randomDot(maxX, maxY) {
         return {
             x: Mat.getRandomInteger(maxX),
