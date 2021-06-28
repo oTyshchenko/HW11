@@ -1,5 +1,13 @@
-class Table {
-    static createTable(dot, table, clas) {
+export class Table {
+    constructor(element) {
+        this.body = element;
+    }
+
+    clearTable() {
+        this.body.textContent = '';
+    }
+
+    createTable(dot, clas) {
         const tr = document.createElement('tr');
         const tdX = document.createElement('td');
         const tdY = document.createElement('td');
@@ -9,8 +17,6 @@ class Table {
         tdY.textContent = dot.y;
         tr.appendChild(tdX);
         tr.appendChild(tdY);
-        table.appendChild(tr);
+        this.body.appendChild(tr);
     }
 }
-
-export { Table };

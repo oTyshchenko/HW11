@@ -1,14 +1,9 @@
-import { Figure } from './../Figure';
-import { Dot } from './../Dot/Dot';
-
-
-class Rect extends Figure {
-    constructor(dot1, dot2, color) {
-        super(color);
+export class Rect {
+    constructor(dot1, dot2) {
         this.beginX = Math.min(dot1.x, dot2.x);
         this.beginY = Math.min(dot1.y, dot2.y);
-        this.width = Math.max(dot1.x, dot2.x) - Math.min(dot1.x, dot2.x);
-        this.height = Math.max(dot1.y, dot2.y) - Math.min(dot1.y, dot2.y);
+        this.width = Math.max(dot1.x, dot2.x) - this.beginX;
+        this.height = Math.max(dot1.y, dot2.y) - this.beginY;
     }
 
     crossRect(rect) {
@@ -16,16 +11,17 @@ class Rect extends Figure {
         const b = rect.beginX + rect.width;
         const c = this.beginY + this.height;
         const d = rect.beginY + rect.height;
-        if (Math.min(a, b) > Math.max(this.beginX, rect.beginX) &&
-            Math.min(c, d) > Math.max(this.beginY, rect.beginY)) {
+        const maxY = Math.max(this.beginY, rect.beginY);
+        const maxX = Math.max(this.beginX, rect.beginX);
+        const minX = Math.min(a, b);
+        const minY = Math.min(c, d);
+        if (minX > maxX && minY > maxY) {
             return {
-                x: Math.max(this.beginX, rect.beginX),
-                y: Math.max(this.beginY, rect.beginY),
-                width: Math.min(a, b) - Math.max(this.beginX, rect.beginX),
-                height: Math.min(c, d) - Math.max(this.beginY, rect.beginY)
+                x: maxX,
+                y: maxY,
+                width: minX - maxX,
+                height: minY - maxY
             };
         };
     }
 }
-
-export { Rect };

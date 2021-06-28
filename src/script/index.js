@@ -7,32 +7,35 @@ import { Draw } from './Classes/Draw';
 import './../style/style.scss';
 
 const BTN = document.getElementById('btn');
-const tbody = document.getElementById('tbody');
+const table = new Table(document.getElementById('tbody'));
 const CANVAS = document.getElementById('canvas');
-const CTX = CANVAS.getContext('2d');
-const WIDTH = CANVAS.width;
-const HEIGHT = CANVAS.height;
+const drowingArea = new Draw(CANVAS.getContext('2d'));
 const numberOfDot = 10;
 
-const start = () => {
-    tbody.innerHTML = '';
-    CTX.clearRect(0, 0, WIDTH, HEIGHT);
-    const blueRect = new Rect(Dot.randomDot(WIDTH, HEIGHT),Dot.randomDot(WIDTH, HEIGHT), 'blue');
-    const redRect = new Rect(Dot.randomDot(WIDTH, HEIGHT),Dot.randomDot(WIDTH, HEIGHT), 'red');
-    Draw.drawRect(CTX, blueRect);
-    Draw.drawRect(CTX, redRect);
-    const crossRect = blueRect.crossRect(redRect);
+BTN.addEventListener('click', () => {
+    const firstRect = new Rect(Dot.randomDot(CANVAS.width, CANVAS.height), Dot.randomDot(CANVAS.width, CANVAS.height));
+    const secondRect = new Rect(Dot.randomDot(CANVAS.width, CANVAS.height), Dot.randomDot(CANVAS.width, CANVAS.height));
+    const crossRect = firstRect.crossRect(secondRect);
+
+    drowingArea.clearRect(CANVAS.width, CANVAS.height);
+    drowingArea.drawRect(firstRect, 'blue');
+    drowingArea.drawRect(secondRect, 'red');
+
+    table.clearTable();
+
     if (crossRect) {
         const newEllipse = new EllipseInRect(crossRect, 'black');
-        Draw.drawEllipse(CTX, newEllipse);
+
+        drowingArea.drawEllipse(newEllipse, 'green');
+
         let i = 0;
         while (i < numberOfDot) {
-            const dotCoordinate = new Dot(Dot.getRandomDotInEllipse(newEllipse), 'darkred');
-            Draw.drawDot(CTX, dotCoordinate);
-            Table.createTable(dotCoordinate, tbody, 'td')
+            const dotCoordinate = newEllipse.getRandomDotInEllipse();
+
+            drowingArea.drawDot(dotCoordinate, 'darkred');
+            
+            table.createTable(dotCoordinate, 'td');
             i++;
         };
     };
-};
-
-BTN.addEventListener('click', start);
+});
