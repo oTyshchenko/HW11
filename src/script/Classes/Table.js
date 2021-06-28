@@ -7,12 +7,12 @@ export class Table {
         this.body.textContent = '';
     }
 
-    createTable(dot, clas) {
+    createTable(dot, cssClass) {
         const tr = document.createElement('tr');
         const tdX = document.createElement('td');
         const tdY = document.createElement('td');
-        tdX.classList.add(clas);
-        tdY.classList.add(clas);
+        tdX.classList.add(cssClass);
+        tdY.classList.add(cssClass);
         tdX.textContent = dot.x;
         tdY.textContent = dot.y;
         tr.appendChild(tdX);

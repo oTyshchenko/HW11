@@ -9,7 +9,7 @@ export class EllipseInRect {
     getRandomDotInEllipse() {
         const angle = Math.floor(Math.random() * Math.PI * 2);
         return {
-            x: this.x + Math.floor(Math.cos(angle) * this.radiusX  * Math.random()),
+            x: this.x + Math.floor(Math.cos(angle) * this.radiusX * Math.random()),
             y: this.y + Math.floor(Math.sin(angle) * this.radiusY * Math.random())
         };
     }

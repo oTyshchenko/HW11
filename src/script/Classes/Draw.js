@@ -7,7 +7,7 @@ export class Draw {
         this.context.clearRect(0, 0, width, height)
     }
 
-    drawDot(obj,color) {
+    drawDot(obj, color) {
         this.context.beginPath();
         this.context.strokeStyle = color;
         this.context.arc(obj.x, obj.y, 1, 0, (Math.PI / 180) * 360);
